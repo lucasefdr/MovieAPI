@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieAPI", "MovieAPI\MovieAPI.csproj", "{5FA05245-C12F-4AF9-8B53-9FDAD87F1DEC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5FA05245-C12F-4AF9-8B53-9FDAD87F1DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FA05245-C12F-4AF9-8B53-9FDAD87F1DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FA05245-C12F-4AF9-8B53-9FDAD87F1DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FA05245-C12F-4AF9-8B53-9FDAD87F1DEC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
