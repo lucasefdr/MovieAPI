@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MovieAPI.Data;
 using MovieAPI.Data.DTOs.Movie;
 using MovieAPI.Data.DTOs.MovieTheater;
@@ -39,6 +40,18 @@ public class MovieTheaterController : ControllerBase
         var movieTheaterDto = _mapper.Map<GetMovieTheaterDto>(movieTheater);
 
         return Ok(movieTheaterDto);
+    }
+
+    [HttpGet("/movietheater/withaddress")]
+    public IEnumerable GetMovieWithAddressParam([FromQuery] int? addressId = null)
+    {
+        if (addressId is null)
+        {
+            return _mapper.Map<List<GetMovieTheaterDto>>(_context.MovieTheaters.ToList());
+        } 
+        return _mapper.Map<List<GetMovieTheaterDto>>(_context.MovieTheaters
+            .FromSqlRaw($"SELECT mt.id, mt.name, mt.addressid FROM movietheaters mt WHERE mt.addressid = {addressId}")
+            .ToList());
     }
 
     [HttpPost]

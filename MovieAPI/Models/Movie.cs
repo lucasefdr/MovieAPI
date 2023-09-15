@@ -17,4 +17,6 @@ public class Movie
     [Required(ErrorMessage = "Duration cannot be empty.")]
     [Range(0, 300, ErrorMessage = "Duration must be between 0 and 300 minutes.")]
     public int Duration { get; set; }
+
+    public virtual ICollection<Section> Sections { get; set; }
 }

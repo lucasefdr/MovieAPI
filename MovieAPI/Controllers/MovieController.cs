@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MovieAPI.Data;
 using MovieAPI.Data.DTOs.Movie;
 using MovieAPI.Models;
@@ -23,9 +24,22 @@ public class MovieController : ControllerBase
     #region HTTP methods
 
     [HttpGet]
-    public IEnumerable GetMovies([FromQuery] int skip = 0, [FromQuery] int take = 10)
+    public IEnumerable GetMovies(
+        [FromQuery] int skip = 0,
+        [FromQuery] int take = 10,
+        [FromQuery] string? movieTheaterName = null)
     {
-        return _mapper.Map<List<GetMovieDto>>(_context.Movies.Skip(skip).Take(take).ToList());
+        if (movieTheaterName == null)
+        {
+            return _mapper.Map<List<GetMovieDto>>(_context.Movies
+                .Skip(skip).Take(take).ToList());
+        }
+
+        // Geting movie by movie theater name
+        return _mapper.Map<List<GetMovieDto>>(_context.Movies
+            .Skip(skip).Take(take)
+            .Where(movie => movie.Sections.Any(section => section.MovieTheater.Name == movieTheaterName))
+            .ToList());
     }
 
     [HttpGet("{id}")]
